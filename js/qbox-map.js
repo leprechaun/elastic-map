@@ -1,6 +1,6 @@
 (function(){
 
-  var ELASTICSEARCH_INDEX_ENDPOINT = 'http://api.qbox.io/jeeipzgmtkuufaby/people/person';
+  var ELASTICSEARCH_INDEX_ENDPOINT = 'http://10.29.3.48:9200';
 
   var METERS_PER_MILE = 1609.34;
 
@@ -114,6 +114,8 @@
     hash.success = processResults;
     hash.error = function(arg) { console.error('ajax error: ', arg) };
 
+	var query = $('#query_textarea').val();
+
     hash.data = JSON.stringify({
       "from" : 0,
       "size" : max_results,
@@ -129,6 +131,8 @@
         }
       }
     });
+
+	hash.data = query;
 
     jQuery.ajax(hash);
   }
